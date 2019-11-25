@@ -1,0 +1,11 @@
+<div class="container, alert alert-secondary">
+  <h1 align="center">New Post</h1>
+  <div class="list-group-item px-20" style = "border-radius: 10px" >
+    <%= render 'form', post: @post %>
+    <div class="pjax-container">
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <%= link_to 'Back', posts_path, class: 'btn btn-dark'%>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="container, alert alert-secondary">
+  <h1 align="center">Show</h1>
+  <div class="list-group-item px-20" style = "border-radius: 10px">
+    <p>
+      <strong>Author:</strong>
+      <%= full_name(@post) %>
+    </p>
+    <p>
+      <strong>Title:</strong>
+      <%= @post.title %>
+    </p>
+    <p>
+      <strong>Content:</strong>
+      <%= @post.content %>
+    </p>
+    <p>
+      <strong>Image:</strong><br>
+      <%= image_tag @post.image, width: '50%' %>
+    </p>
+    <p>
+      <%= distance_of_time_in_words(Time.now.hour, Time.now-@post.created_at) %>
+    </p>
+    <div class="pjax-container">
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-secondary' %>
+        <%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
+      </div>
+    </div>
+    
+    <br>
+    <br>
+    <br>
+
+    <h5>Comments</h5>
+    <% @post.comments.each do |comment| %>
+    <div class="alert alert-light">
+      <p title = "<%= comment.created_at%>"><strong><%= Author.find_by_id(comment.author_id).first_name %></strong>: <%= comment.body %>
+        <% if current_author %>
+
+        <%end%>
+        <br>
+        <%= distance_of_time_in_words(Time.now.hour, Time.now-comment.created_at) %>
+      </p>
+    </div>
+    <% end %>
+
+    <p>Add a public comment</p>
+    <% if current_author %>
+      <%= form_for([@post, @post.comments.build]) do |f|%>
+        <p><strong>Text comment:</strong>
+          <%= f.text_area(:body, {:class => 'form-control'}) %>
+        </p>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <%= f.submit 'Comment', class: 'btn btn-success' %>
+        </div>
+      <%end%>
+      <%else%>
+        <p>Please login to post a comment</p>
+    <% end %>
+  </div>
+</div>
