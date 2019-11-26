@@ -2,7 +2,7 @@
 <div class=" container w-50 p-3">
   <div class="card">
 
-    <p id=”alert”><%= alert %></p>
+
 
     <h2 class="card-title text-center mb-4 mt-1">Sign in</h2>
 
@@ -22,6 +22,7 @@
         </div>
         <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
       </div>
+      <p class = "card-title text-center mb-4 mt-1"><em >(8 characters minimum)</em></p>
     </div>
     <div class="form-group">
     <%= f.submit 'Login', class: "btn btn-success btn-block" %>

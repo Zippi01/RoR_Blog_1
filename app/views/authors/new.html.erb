@@ -5,6 +5,17 @@
     <h2 class="card-title text-center mb-4 mt-1">Registration</h2>
 
     <%= form_for(@author) do |f| %>
+    <% if @author.errors.any? %>
+      <div class="alert alert-danger">
+        <h2><%= pluralize(@author.errors.count, "error") %> prohibited this author from being saved:</h2>
+
+        <ul>
+          <% @author.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <%end%>
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -36,6 +47,7 @@
           </div>
           <%= f.password_field :password, class: "form-control", placeholder: "Password" %>
         </div>
+        <p class = "card-title text-center mb-4 mt-1"><em >(8 characters minimum)</em></p>
       </div>
       <div class="form-group">
         <%= f.submit "Registration", class: "btn btn-success btn-block" %>

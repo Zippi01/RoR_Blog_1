@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+  <% if cookie_index and current_user == nil %>
+    <script>alert('Please login or register!!');</script>
+  <% end %>
   <head>
     <title>Blog</title>
 
@@ -13,7 +16,7 @@
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
       <p class="fas fa-dove " style="color: #51cf66;"></p>
       <%= link_to "Blog", home_path, class: "navbar-brand "%>
-<div> </div>
+
 
       <button class="navbar-toggler" type="button"
               data-toggle="collapse" data-target="#navbarSupportedContent"
