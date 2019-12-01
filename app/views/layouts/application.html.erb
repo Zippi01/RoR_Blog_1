@@ -18,12 +18,13 @@
       <%= link_to "Blog", home_path, class: "navbar-brand "%>
 
 
-      <button class="navbar-toggler" type="button"
+      <!-- <button class="navbar-toggler" type="button"
               data-toggle="collapse" data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false"
               aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> -->
+
       <%= form_tag(posts_path, :method => "get", id: "search-form", class:"form-inline center col-xs-4 col-sm-4 col-md-4") do %>
         <%= text_field_tag :search, params[:search], placeholder: "Search Posts", class: "form-control mr-sm-2" %>
         <%= submit_tag "Search", class: "btn btn-outline-success" %>

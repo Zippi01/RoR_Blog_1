@@ -15,7 +15,7 @@
         <div class="pjax-container">
           <p class="far fa-eye"> <%= post.impressions_count %></p><br>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <%= link_to 'Show', post , class: 'btn btn-success '%>
+            <%= link_to 'Show', post , class: 'btn btn-success'%>
             <% if current_author && current_author.id == post.author_id %>
               <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-secondary' %>
               <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-dark'%>

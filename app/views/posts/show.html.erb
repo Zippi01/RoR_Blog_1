@@ -22,7 +22,9 @@
     </p>
     <div class="pjax-container">
       <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <% if current_author %>
         <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-secondary' %>
+        <%end%>
         <%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
       </div>
     </div>
@@ -34,14 +36,16 @@
     <h5>Comments</h5>
     <% @post.comments.each do |comment| %>
     <div class="alert alert-light">
-      <p title = "<%= comment.created_at%>"><strong><%= Author.find_by_id(comment.author_id).first_name %></strong>: <%= comment.body %>
-        <% if current_author %>
-
-        <%end%>
+      <div title = "<%= comment.created_at%>"><strong><%= Author.find_by_id(comment.author_id).first_name %></strong>: <%= comment.body %>
         <br>
         <%= distance_of_time_in_words(Time.now.hour, Time.now-comment.created_at) %>
-        <%= link_to 'Edit', edit_post_comments_path(@post, comment) %>
-      </p>
+        <% if comment.created_at != comment.updated_at%>
+          <i class="far fa-edit"></i>
+        <% end %>
+        <% if current_author && current_author.id == comment.author_id && Time.now - comment.created_at < 1.hour%>
+          <p><%= link_to 'Edit', edit_post_comment_path(@post, comment), class: 'btn btn-secondary btn-sm' %></p>
+        <% end %>
+      </div>
     </div>
     <% end %>
 
@@ -55,7 +59,9 @@
           <%= f.submit 'Comment', class: 'btn btn-success' %>
         </div>
       <%end%>
+
       <%else%>
+
         <p>Please login to post a comment</p>
     <% end %>
   </div>

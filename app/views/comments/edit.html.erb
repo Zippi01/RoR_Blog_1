@@ -1,7 +1,13 @@
-<div id="comment-form">
-    <%= form_for @comment do |f| %>
-        <%= f.label :body %>
-        <%= f.text_area :body, class: "text-area" %>
-        <%= f.submit %>
-    <% end %>
+<h1 align="center">Editing Comment</h1>
+<div class="container, alert alert-secondary">
+  <div class="list-group-item px-20" style = "border-radius: 10px" id="comment-form">
+    <div class="field">
+        <%= form_for ([@post, @comment]) do |f| %>
+          <strong><%= f.label :"Content:" %></strong>
+            <%= f.text_area :body, class: "form-control" %>
+              <p></p>
+            <%= f.submit 'Edit', class: 'btn btn-secondary'%>
+        <% end %>
+    </div>
+  </div>
 </div>

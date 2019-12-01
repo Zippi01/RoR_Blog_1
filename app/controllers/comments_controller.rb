@@ -12,12 +12,12 @@ class CommentsController < ApplicationController
 
   def edit
       @post = Post.find(params[:post_id])
-      @comment = @post.author.comments.find(params[:id])
+      @comment = Comment.find(params[:id])
     end
 
    def update
-     @comment = Comment.find(params[:format])
      @post = Post.find(params[:post_id])
+     @comment = Comment.find(params[:id])
      respond_to do |format|
        if @comment.update(comment_params)
          format.html { redirect_to @post, notice: 'Post was successfully updated.' }
