@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :find_post
   impressionist actions: [:show], unique: [:session_hash]
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(comment_params)
@@ -8,6 +10,14 @@ class CommentsController < ApplicationController
     if @comment.save!
       flash.now[:danger] = "error"
     end
+  end
+
+  def index
+    @post.comments = @post.comments.arrange(order: :created_at)
+  end
+
+  def new
+    @comment = Comment.new(parent_id: params[:parent_id])
   end
 
   def edit
@@ -20,7 +30,7 @@ class CommentsController < ApplicationController
      @comment = Comment.find(params[:id])
      respond_to do |format|
        if @comment.update(comment_params)
-         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+         format.html { redirect_to @post, notice: 'Comment was successfully updated.' }
          format.json { render :show, status: :ok, location: @post }
        else
          format.html { render :edit }
@@ -28,11 +38,28 @@ class CommentsController < ApplicationController
        end
      end
     end
+
+    def destroy
+         @post = Post.find(params[:post_id])
+         @comment = @post.comments.find(comment_params)
+         @comment.destroy
+
+         respond_to do |format|
+             format.html { redirect_to @post }
+             format.js
+         end
+     end
+
   private
 
   def comment_params
-    params.require(:comment).permit(:body)
+     params.require(:comment).permit(:body, :author_id, :parent_id)
   end
+
+  def find_post
+    @post = Post.find(params[:post_id])
+  end
+
   def actions_check
     if cookies[:actions]
       cookies[:actions] = cookies[:actions].to_i + 1

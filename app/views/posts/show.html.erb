@@ -32,37 +32,8 @@
     <br>
     <br>
     <br>
-
     <h5>Comments</h5>
-    <% @post.comments.each do |comment| %>
-    <div class="alert alert-light">
-      <div title = "<%= comment.created_at%>"><strong><%= Author.find_by_id(comment.author_id).first_name %></strong>: <%= comment.body %>
-        <br>
-        <%= distance_of_time_in_words(Time.now.hour, Time.now-comment.created_at) %>
-        <% if comment.created_at != comment.updated_at%>
-          <i class="far fa-edit"></i>
-        <% end %>
-        <% if current_author && current_author.id == comment.author_id && Time.now - comment.created_at < 1.hour%>
-          <p><%= link_to 'Edit', edit_post_comment_path(@post, comment), class: 'btn btn-secondary btn-sm' %></p>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
-
-    <p>Add a public comment</p>
-    <% if current_author %>
-      <%= form_for([@post, @post.comments.build]) do |f|%>
-        <p><strong>Text comment:</strong>
-          <%= f.text_area(:body, {:class => 'form-control'}) %>
-        </p>
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <%= f.submit 'Comment', class: 'btn btn-success' %>
-        </div>
-      <%end%>
-
-      <%else%>
-
-        <p>Please login to post a comment</p>
-    <% end %>
+    <p style = 'margin-left: 30px'><%= nested_comments @post.comments.arrange(order: :created_at)%></p>
+    <%= render 'comments/form' %>
   </div>
 </div>

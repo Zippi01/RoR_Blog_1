@@ -1,7 +1,9 @@
 class Author < ApplicationRecord
   has_many :posts
   has_many :comments
+  has_many :likes, dependent: :destroy
 
+  
   has_secure_password
 
   validates :email, presence: true, uniqueness: true

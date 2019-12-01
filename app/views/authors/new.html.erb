@@ -1,21 +1,19 @@
 <br>
 <div class=" container w-50 p-3">
   <div class="card">
-
     <h2 class="card-title text-center mb-4 mt-1">Sign up</h2>
-
     <%= form_for(@author) do |f| %>
-    <% if @author.errors.any? %>
-      <div class="alert alert-danger">
-        <h2><%= pluralize(@author.errors.count, "error") %> prohibited this author from being saved:</h2>
-
-        <ul>
-          <% @author.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
+      <% if @author.errors.any? %>
+        <div class="alert alert-danger">
+          <h2><%= pluralize(@author.errors.count, "error") %> prohibited this author from being saved:</h2>
+          <ul>
+            <% @author.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <%end%>
+
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -24,6 +22,7 @@
           <%= f.text_field :first_name, class: "form-control", placeholder: "First name"  %>
         </div>
       </div>
+
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -32,6 +31,7 @@
           <%= f.text_field :last_name, class: "form-control", placeholder: "Last name" %>
         </div>
       </div>
+
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -40,6 +40,7 @@
           <%= f.email_field :email, class: 'form-control', placeholder: 'Email'  %>
         </div>
       </div>
+
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -49,6 +50,7 @@
         </div>
         <p class = "card-title text-center mb-4 mt-1"><em >(8 characters minimum)</em></p>
       </div>
+
       <div class="form-group">
         <%= f.submit "Sign up", class: "btn btn-success btn-block" %>
       </div>

@@ -1,0 +1,15 @@
+<div class="alert alert-light">
+  <div title = "<%= comment.created_at%>"><strong><%= Author.find_by_id(comment.author_id).first_name %></strong>: <%= comment.body %>
+    <br>
+    <%= distance_of_time_in_words(Time.now.hour, Time.now-comment.created_at) %>
+    <% if comment.created_at != comment.updated_at%>
+      <i class="far fa-edit"></i>
+    <% end %>
+    <%= link_to 'Reply',  new_post_comment_path(comment.post, parent_id: comment.id), class:'btn btn-outline-success' %>
+    <% if current_author && current_author.id == comment.author_id && Time.now - comment.created_at < 1.hour%>
+      <p><%= link_to 'Edit', edit_post_comment_path(@post, comment), class: 'btn btn-secondary btn-sm' %></p>
+  
+
+    <% end %>
+  </div>
+</div>

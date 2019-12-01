@@ -22,6 +22,8 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 
 gem 'impressionist'
 
+gem 'ancestry', '~> 3.0', '>= 3.0.7'
+
 gem 'rubocop', require: false
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

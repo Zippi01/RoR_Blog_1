@@ -1,4 +1,3 @@
-
 <div class=" alert alert-secondary ">
   <head>
     <h1 align="center">Posts</h1>
@@ -7,7 +6,7 @@
     <% @posts.each do |post| %>
     <div class="list-group-item px-20" style = "border-radius: 10px" >
         <h5>Anthor</h5>
-          <%= full_name(post) %>
+          <p><%= full_name(post) %></p>
         <h5>Title</h5>
           <p><%= post.title %></p>
         <h5>Content</h5>

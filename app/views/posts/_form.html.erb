@@ -9,6 +9,7 @@
       </ul>
     </div>
   <% end %>
+
   <div class="field">
     <strong><%= form.label :"Title:"%></strong>
     <%= form.text_field :title, class: "form-control"%>
@@ -26,7 +27,7 @@
     <p><i class="fas fa-images"></i><%= form.file_field :image,class: "btn-sm" %></p>
   </div>
     <p></p>
-    
+
   <div class="actions">
     <%= form.submit :Done, class: "btn btn-success btn-sm"  %>
   </div>
