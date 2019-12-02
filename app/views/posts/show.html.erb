@@ -20,20 +20,22 @@
     <p>
       <%= distance_of_time_in_words(Time.now.hour, Time.now-@post.created_at) %>
     </p>
+
     <div class="pjax-container">
       <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <% if current_author %>
-        <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-secondary' %>
+        <% if current_author && current_author.id == @post.author_id %>
+          <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-secondary' %>
         <%end%>
-        <%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
+          <%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
       </div>
     </div>
 
     <br>
     <br>
     <br>
+
     <h5>Comments</h5>
-    <p style = 'margin-left: 30px'><%= nested_comments @post.comments.arrange(order: :created_at)%></p>
+    <%= nested_comments @post.comments.arrange(order: :created_at)%>
     <%= render 'comments/form' %>
   </div>
 </div>

@@ -6,8 +6,10 @@
           <strong><%= f.label :"Content:" %></strong>
             <%= f.text_area :body, class: "form-control" %>
               <p></p>
-            <%= f.submit 'Edit', class: 'btn btn-secondary'%>
-            <%= link_to 'Back', post_path, class: 'btn btn-dark'%>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <%= f.submit 'Edit', class: 'btn btn-secondary'%>
+              <%= link_to 'Back', @post, class: 'btn btn-dark'%>
+            </div>
         <% end %>
     </div>
   </div>
