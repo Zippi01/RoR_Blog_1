@@ -20,7 +20,10 @@
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <%= link_to 'Show', post , class: 'btn btn-success'%>
 
-            <% if current_author && current_author.id == post.author_id %>
+            <% if current_author &&
+                  current_author.id == post.author_id &&
+                  current_author.banned == false %>
+
               <%= link_to 'Edit',
                   edit_post_path(post),
                   class: 'btn btn-secondary' %>
@@ -30,7 +33,6 @@
                   data: { confirm: 'Are you sure?' },
                   class: 'btn btn-dark'%>
             <% end %>
-
           </div>
         </div>
       </div>

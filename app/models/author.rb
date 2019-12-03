@@ -3,11 +3,11 @@ class Author < ApplicationRecord
   has_many :comments
   has_many :likes, dependent: :destroy
 
-  
+
   has_secure_password
 
   validates :email, presence: true, uniqueness: true
-  validate :email_valid, :password_valid
+  validate :email_valid
 
   private
 

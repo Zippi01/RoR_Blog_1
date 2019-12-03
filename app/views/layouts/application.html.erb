@@ -44,8 +44,10 @@
               <div class="text-white">
                 Logged in as <%= current_author.email %>
                 <%= link_to "Logout", "/logout", class:'btn btn-outline-success my-2 my-sm-0'  %>
-                <%= link_to 'New Post', new_post_path, class:'btn btn-outline-success'%>
-                  <% else %>
+                  <% if !current_author.banned? %>
+                    <%= link_to "New post", new_post_path, class:'btn btn-outline-success'%>
+                  <%end%>
+            <% else %>
                 <%= link_to "Log in", login_path, class:'btn btn-outline-success my-2 my-sm-0'  %>
                 <%= link_to "Sign up", signup_path, class:'btn btn-outline-success my-2 my-sm-0'%>
               </div>

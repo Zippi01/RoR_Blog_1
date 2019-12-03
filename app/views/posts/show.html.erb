@@ -23,7 +23,9 @@
 
     <div class="pjax-container">
       <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <% if current_author && current_author.id == @post.author_id %>
+        <% if current_author &&
+              current_author.id == @post.author_id &&
+              current_author.banned == false%>
           <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-secondary' %>
         <%end%>
           <%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
@@ -39,3 +41,10 @@
     <%= render 'comments/form' %>
   </div>
 </div>
+
+
+<style media="screen">
+  .nested_comments {
+    margin-left: 30px;
+  }
+</style>

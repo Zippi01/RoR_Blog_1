@@ -1,6 +1,6 @@
 <p>Add a public comment</p>
 
-<% if current_author %>
+<% if current_author && current_author.banned == false %>
   <%= form_for([@post, @post.comments.build]) do |f|%>
     <p><strong>Text comment:</strong>
       <%= f.text_area(:body, {:class => 'form-control'}) %>
@@ -10,7 +10,11 @@
     </div>
   <%end%>
 
-  <%else%>
+<%else%>
 
-    <p>Please login to post a comment</p>
+  <% if current_author == nil || current_author.banned == false %>
+    <p>Please login to post a comment!</p>
+  <%else%>
+    <p>Your account is banned!</p>
+  <% end %>
 <% end %>

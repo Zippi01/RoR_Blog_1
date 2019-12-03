@@ -6,10 +6,12 @@
         <%= f.hidden_field :parent_id, value: params[:parent_id] %>
           <strong><%= f.label :"Content:" %></strong>
           <%= f.text_area :body, class:"form-control" %>
+
           <p></p>
+
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <%= f.submit 'Save', class:"btn btn-success" %>
-          <%= link_to 'Back', @post, class: 'btn btn-dark'%>
+            <%= f.submit 'Save', class:"btn btn-success" %>
+            <%= link_to 'Back', @post, class: 'btn btn-dark'%>
           </div>
       <% end %>
     </div>
