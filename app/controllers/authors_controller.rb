@@ -8,7 +8,7 @@ class AuthorsController < ApplicationController
     if @author.save
       session[:author_id] = @author.id
       redirect_to '/posts'
-      flash[:info] = "Welcome, #{@author.first_name} #{@author.last_name}!"
+      flash[:success] = "Welcome, #{@author.first_name} #{@author.last_name}!"
     else
       render 'new'
     end
