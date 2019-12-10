@@ -40,23 +40,23 @@
       <i><%= comment.likes.count %> <%= (comment.likes.count) == 1 ? 'Like' : 'Likes'%></i>
 
       <% if current_author%>
-       <% like_check = comment.likes.find { |like| like.author_id == current_author.id} %>
-          <% if like_check %>
+      <% like_check = comment.likes.find { |like| like.author_id == current_author.id} %>
+         <% if like_check %>
 
-            <%= link_to ' ',
-                post_comment_like_path(@post, comment, like_check ),
-                method: :delete,
-                class: "badge badge-light far fa-thumbs-down", remote: true %>
+           <%= link_to ' ',
+               post_comment_like_path(@post, comment, like_check ),
+               method: :delete,
+               class: "badge badge-light far fa-thumbs-down", remote: true %>
 
-          <% else %>
+         <% else %>
 
-            <%= link_to ' ',
-                post_comment_likes_path(@post, comment),
-                method: :post,
-                class: "badge badge-light far fa-thumbs-up" , remote: true %>
+           <%= link_to ' ',
+               post_comment_likes_path(@post, comment),
+               method: :post,
+               class: "badge badge-light far fa-thumbs-up" , remote: true %>
 
-          <% end %>
-        <% end %>
+         <% end %>
+       <% end %>
     </div>
   </div>
 </div>

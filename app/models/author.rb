@@ -10,6 +10,7 @@ class Author < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validate :email_valid
+  validates :password_digest, presence: true, length: { minimum: 8 }
 
   def email_activate
    self.email_confirmed = true

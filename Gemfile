@@ -9,6 +9,9 @@ gem 'rails', '~> 6.0.1'
 # gem 'sqlite3', '~> 1.4'
 gem 'pg'
 
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap4'
+
 gem 'activeadmin'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'

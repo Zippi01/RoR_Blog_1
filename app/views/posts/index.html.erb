@@ -38,5 +38,11 @@
       </div>
       <br>
     <% end %>
+
+
+<div class="row justify-content-center" >
+
+    <%= will_paginate @posts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer%>
+</div>
   </body>
 </div>

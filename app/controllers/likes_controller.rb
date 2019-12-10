@@ -7,7 +7,6 @@ class LikesController < ApplicationController
     else
       @comment.likes.create(author_id: current_author.id)
     end
-
     redirect_to @post
   end
 

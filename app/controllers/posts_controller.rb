@@ -4,10 +4,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+     @posts = Post.all.order('created_at DESC')
     if params[:search]
-      @posts = Post.search(params[:search]).order('updated_at').reverse
+      @posts = Post.search(params[:search]).order('updated_at').paginate(page: params[:page], per_page: 5)
     else
-      @posts = Post.all.order('updated_at').reverse
+      @posts = Post.all.order('updated_at').paginate(page: params[:page], per_page: 5)
     end
   end
 
