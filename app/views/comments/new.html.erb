@@ -1,19 +1,2 @@
-<h1 align="center">Response to comment</h1>
-<div class="container, alert alert-secondary">
-  <div class="list-group-item px-20" style = "border-radius: 10px" id="comment-form">
-    <div class="field">
-      <%= form_with(model: [ @post, @post.comments.build ], local: true) do |f| %>
-        <%= f.hidden_field :parent_id, value: params[:parent_id] %>
-          <strong><%= f.label :"Content:" %></strong>
-          <%= f.text_area :body, class:"form-control" %>
 
-          <p></p>
-
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <%= f.submit 'Save', class:"btn btn-success" %>
-            <%= link_to 'Back', @post, class: 'btn btn-dark'%>
-          </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= render "replies" %>

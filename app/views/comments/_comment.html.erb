@@ -1,52 +1,62 @@
-<div class="alert alert-light">
-  <div title = "<%= comment.created_at%>"><strong><%= Author.find_by_id(comment.author_id).first_name %></strong>: <%= comment.body %>
-    <br>
-    <%= distance_of_time_in_words(Time.now.hour, Time.now-comment.created_at) %>
 
-    <% if comment.created_at != comment.updated_at%>
-      <i class="far fa-edit"></i>
-    <% end %>
+<div id="comment_<%= comment.id %>">
 
-    <br>
 
-    <% if current_author && !current_author.banned?%>
-      <%= link_to 'Reply',
-          new_post_comment_path(comment.post,
-          parent_id: comment.id),
-          class:'badge badge-pill badge-success' %>
-    <% end %>
+  <div class="alert alert-light">
+    <div title = "<%= comment.created_at%>"><strong><%= Author.find_by_id(comment.author_id).first_name %></strong>: <%= comment.body %>
+      <br>
+      <%= distance_of_time_in_words(Time.now.hour, Time.now-comment.created_at) %>
 
-    <% if current_author &&
-          current_author.id == comment.author_id &&
-          Time.now - comment.created_at < 1.hour%>
-
-        <%= link_to 'Edit',
-        edit_post_comment_path(@post, comment),
-        class: 'badge badge-pill badge-secondary' %>
-
-        <%= link_to 'Destroy',
-        [comment.post, comment],
-        method: :delete, data: { confirm: 'Are you sure?' },
-        class: 'badge badge-pill badge-dark' %>
+      <% if comment.created_at != comment.updated_at%>
+        <i class="far fa-edit"></i>
       <% end %>
 
-    <p></p>
+      <br>
 
-    <i><%= comment.likes.count %> <%= (comment.likes.count) == 1 ? 'Like' : 'Likes'%></i>
+      <% if current_author && !current_author.banned?%>
+        <%= link_to 'Reply',
+            new_post_comment_path(comment.post, parent_id: comment.id, js: true),
+            remote: true,
+            class:'badge badge-pill badge-success' %>
+      <% end %>
 
-    <% if current_author%>
-     <% like_check = comment.likes.find { |like| like.author_id == current_author.id} %>
-        <% if like_check %>
-          <%= link_to ' ',
-              post_comment_like_path(@post, comment, like_check ),
-              method: :delete,
-              class: "badge badge-light far fa-thumbs-down" %>
-        <% else %>
-          <%= link_to ' ',
-              post_comment_likes_path(@post, comment),
-              method: :post,
-              class: "badge badge-light far fa-thumbs-up" %>
+      <% if current_author &&
+            current_author.id == comment.author_id &&
+            Time.now - comment.created_at < 1.hour%>
+
+          <%= link_to 'Edit',
+          edit_post_comment_path(@post, comment),
+          class: 'badge badge-pill badge-secondary' %>
+
+          <%= link_to 'Destroy',
+          [comment.post, comment],
+          remote: true,
+          method: :delete, data: { confirm: 'Are you sure?' },
+          class: 'badge badge-pill badge-dark' %>
         <% end %>
-      <% end %>
+
+      <p></p>
+
+      <i><%= comment.likes.count %> <%= (comment.likes.count) == 1 ? 'Like' : 'Likes'%></i>
+
+      <% if current_author%>
+       <% like_check = comment.likes.find { |like| like.author_id == current_author.id} %>
+          <% if like_check %>
+
+            <%= link_to ' ',
+                post_comment_like_path(@post, comment, like_check ),
+                method: :delete,
+                class: "badge badge-light far fa-thumbs-down", remote: true %>
+
+          <% else %>
+
+            <%= link_to ' ',
+                post_comment_likes_path(@post, comment),
+                method: :post,
+                class: "badge badge-light far fa-thumbs-up" , remote: true %>
+
+          <% end %>
+        <% end %>
+    </div>
   </div>
 </div>

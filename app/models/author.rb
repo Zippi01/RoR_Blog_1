@@ -2,6 +2,8 @@ class Author < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :likes, dependent: :destroy
+  before_create :confirmation_token
+  after_create :send_confirmation
 
 
   has_secure_password
@@ -9,7 +11,23 @@ class Author < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validate :email_valid
 
+  def email_activate
+   self.email_confirmed = true
+   self.confirm_token = nil
+   save!(:validate => false)
+ end
+
   private
+
+  def send_confirmation
+      UserMailer.sample_email(self).deliver!
+  end
+
+  def confirmation_token
+   if self.confirm_token.blank?
+     self.confirm_token = SecureRandom.urlsafe_base64.to_s
+   end
+  end
 
   def email_valid
     unless email.include?('@')

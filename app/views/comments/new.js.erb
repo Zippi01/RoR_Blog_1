@@ -1,0 +1,2 @@
+$("#new_comment").after('<%= j render 'replies' %>');
+$("#comment-<%=@comment.parent_id %>").after('<%= j render('form', comment: @comment) %>');

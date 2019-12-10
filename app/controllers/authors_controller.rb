@@ -8,12 +8,24 @@ class AuthorsController < ApplicationController
     if @author.save
       session[:author_id] = @author.id
       redirect_to '/posts'
-      flash[:success] = "Welcome, #{@author.first_name} #{@author.last_name}!"
+      flash[:success] = "Welcome, #{@author.first_name} #{@author.last_name}! Please activate the account!"
     else
       render 'new'
     end
   end
 
+  def confirm_email
+    author = Author.find_by_confirm_token(params[:id])
+    if author
+      author.email_activate
+      flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
+      Please sign in to continue."
+      redirect_to login_path
+    else
+      flash[:error] = "User does not exist"
+      redirect_to '/posts'
+    end
+  end
 
   private
 

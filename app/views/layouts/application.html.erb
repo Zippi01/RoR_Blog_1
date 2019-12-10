@@ -28,10 +28,12 @@
       <%= form_tag(posts_path, :method => "get",
           id: "search-form",
           class:"form-inline center col-xs-4 col-sm-4 col-md-4") do %>
+
         <%= text_field_tag :search,
             params[:search],
             placeholder: "Search Posts",
             class: "form-control mr-sm-2" %>
+
         <%= submit_tag "Search", class: "btn btn-outline-success" %>
       <% end %>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">

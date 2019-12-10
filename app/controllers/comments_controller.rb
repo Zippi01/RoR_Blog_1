@@ -6,9 +6,17 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(comment_params)
     @comment.author_id = current_author.id
-    redirect_to post_path(@post)
-    if @comment.save!
-      flash.now[:danger] = "error"
+    if @comment.ancestors.count <= 4
+      respond_to do |format|
+        if @comment.save
+          format.js {render 'create', status: :created, location: @post}
+          format.html { redirect_to @post, notice: 'Comment was successfully created.' }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @post, alert: 'To much comments in one tree (5 comments max)' }
+      end
     end
   end
 
@@ -43,8 +51,11 @@ class CommentsController < ApplicationController
         @post = Post.find(params[:post_id])
         @comment = @post.comments.find(params[:id])
         if (current_author.id == @comment.author_id)
-        @comment.destroy
-        redirect_to post_path(@post), notice: 'Comment was successfully destroyed.'
+          @comment.destroy
+          respond_to do |format|
+            format.js {render 'destroy', status: :created, location: @post}
+            format.html { redirect_to @post, notice: 'Comment was successfully destroyed.' }
+          end
         else
           redirect_to root_path
         end
