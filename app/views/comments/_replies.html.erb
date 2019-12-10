@@ -2,7 +2,7 @@
 <br>
   <div class="list-group-item px-20" style = "border-radius: 10px" id="comment-form">
     <div class="field">
-      <%= form_with (model: [ @post, @post.comments.build ], remote: true) do |f| %>
+      <%= form_with(model: [ @post, @post.comments.build ], local: true) do |f| %>
         <%= f.hidden_field :parent_id, value: params[:parent_id] %>
           <strong><%= f.label :"Content:" %></strong>
           <%= f.text_area :body, class:"form-control" %>
