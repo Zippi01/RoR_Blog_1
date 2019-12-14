@@ -1,2 +1,3 @@
-$(".comment").html("<%=j render @post.comments %>");
+$(".comment").replaceWith("<div class='comment'><%= j nested_comments @post.comments.arrange(order: :created_at)%>");
+
 $('.new_comment')[0].reset();

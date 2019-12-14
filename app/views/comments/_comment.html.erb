@@ -1,7 +1,5 @@
 
 <div id="comment_<%= comment.id %>">
-
-
   <div class="alert alert-light">
     <div title = "<%= comment.created_at%>"><strong><%= Author.find_by_id(comment.author_id).first_name %></strong>: <%= comment.body %>
       <br>
