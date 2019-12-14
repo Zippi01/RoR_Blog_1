@@ -1,0 +1,4 @@
+<h1> Hello dear <%= @author.first_name %></h1>
+<p>To reset your password, click the URL below.</p>
+<h3><%= edit_pass_reset_url(@author.confirm_token) %></h3>
+<p>If you did not request your password to be reset, just ignore this email and your password will continue to stay the same.<p>

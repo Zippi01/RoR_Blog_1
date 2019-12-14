@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Password Recovery</h1>
+  <%= form_tag pass_reset_index_path, :method => :post do %>
+    <div class="field">
+      <%= text_field_tag :email, params[:email], class:'form-control', id: "email", placeholder: "Enter you email" %>
+    </div>
+    <br>
+    <div class="text-center form-group form"><%= submit_tag "Reset Password", class:'btn btn-primary' %></div>
+  <% end %>
+</div>

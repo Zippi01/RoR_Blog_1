@@ -16,6 +16,9 @@ Rails.application.routes.draw do
       get :confirm_email
     end
   end
+
+  get 'pass_reset/new'
+  resources :pass_reset
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :authors
   resources :sessions, only: [:new, :create, :destroy]

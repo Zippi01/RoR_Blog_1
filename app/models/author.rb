@@ -10,13 +10,20 @@ class Author < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validate :email_valid
-  validates :password_digest, presence: true, length: { minimum: 8 }
+  validates :password, presence: true, length: { minimum: 8 }
 
   def email_activate
-   self.email_confirmed = true
-   self.confirm_token = nil
-   save!(:validate => false)
- end
+     self.email_confirmed = true
+     self.confirm_token = nil
+     save!(:validate => false)
+  end
+
+  def password_reset
+    confirmation_token
+    self.pass_time = Time.zone.now
+    save!(:validate => false)
+    UserMailer.pass_reset(self).deliver!
+  end
 
   private
 
@@ -37,7 +44,7 @@ class Author < ApplicationRecord
   end
 
   def password_valid
-    unless  password.count("a-z") > 0 && password.count("A-Z") > 0 && password.count((0-9).to_s) > 0
+    unless password.count("a-z") > 0 && password.count("A-Z") > 0 && password.count((0-9).to_s) > 0
       errors.add(:password, "Password must contain 1 small letter, 1 capital letter and number")
     end
   end

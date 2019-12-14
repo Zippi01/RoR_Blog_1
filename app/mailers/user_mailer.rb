@@ -5,4 +5,10 @@ class UserMailer < ApplicationMailer
     @author = author
     mail(to: @author.email, subject: 'Sample Email')
   end
+
+  def pass_reset(author)
+    @author = author
+    mail(to: author.email, subject: "Password Reset")
+  end
 end
+
