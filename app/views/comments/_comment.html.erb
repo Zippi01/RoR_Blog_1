@@ -15,7 +15,7 @@
         <%= link_to 'Reply',
             new_post_comment_path(comment.post, parent_id: comment.id, js: true),
             remote: true,
-            class:'badge badge-pill badge-success' %>
+            class:'badge badge-pill badge-warning' %>
       <% end %>
 
       <% if current_author &&
@@ -24,13 +24,13 @@
 
           <%= link_to 'Edit',
           edit_post_comment_path(@post, comment),
-          class: 'badge badge-pill badge-secondary' %>
+          class: 'badge badge-pill badge-light' %>
 
           <%= link_to 'Destroy',
           [comment.post, comment],
           remote: true,
           method: :delete, data: { confirm: 'Are you sure?' },
-          class: 'badge badge-pill badge-dark' %>
+          class: 'badge badge-pill badge-light' %>
         <% end %>
 
       <p></p>

@@ -12,11 +12,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/ac7c51298a.js" crossorigin="anonymous"></script>
 
-
-    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-      <p class="fas fa-dove " style="color: #51cf66;"></p>
-      <%= link_to "Blog", home_path, class: "navbar-brand "%>
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div>
+        <i class="fas fa-coffee" style="color: #ff922b;"></i>
+        <%= link_to "Blog", home_path, class: "navbar-brand "%>
+      </div>
 
       <!-- <button class="navbar-toggler" type="button"
               data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -34,7 +34,7 @@
             placeholder: "Search Posts",
             class: "form-control mr-sm-2" %>
 
-        <%= submit_tag "Search", class: "btn btn-outline-success" %>
+        <%= submit_tag "Search", class: "btn btn-outline-warning" %>
       <% end %>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -43,16 +43,16 @@
         <form class="form-inline my-2 my-lg-0  ">
           <div class="nav-item">
             <% if current_author %>
-              <div class="text-white">
+            <div class="badge badge-light">
                 Logged in as <%= current_author.email %>
-                <%= link_to "Logout", "/logout", class:'btn btn-outline-success my-2 my-sm-0'  %>
+              </div>
+                <%= link_to "Logout", "/logout", class:'btn btn-outline-warning my-2 my-sm-0'  %>
                   <% if !current_author.banned? %>
-                    <%= link_to "New post", new_post_path, class:'btn btn-outline-success'%>
+                    <%= link_to "New post", new_post_path, class:'btn btn-warning'%>
                   <%end%>
             <% else %>
-                <%= link_to "Log in", login_path, class:'btn btn-outline-success my-2 my-sm-0'  %>
-                <%= link_to "Sign up", signup_path, class:'btn btn-outline-success my-2 my-sm-0'%>
-              </div>
+                <%= link_to "Log in", login_path, class:'btn btn-outline-warning my-2 my-sm-0'  %>
+                <%= link_to "Sign up", signup_path, class:'btn btn-warning my-2 my-sm-0'%>
             <% end %>
           </div>
         </form>
@@ -61,17 +61,15 @@
   </head>
 
   <body>
-    <div class="container">
       <%= render partial: 'posts/flash',  flash: flash %>
       <%= yield %>
-    </div>
   </body>
-  <footer class=" page-footer font-small bg-dark">
-    <div class="footer-copyright text-center py-3 text-white">© 2019 RoR Homework:
+  <footer class=" page-footer font-small bg-light">
+    <div class="footer-copyright text-center py-3 ">© 2019 RoR Homework:
       <strong>RoR_Blog</strong><br>
-      <i class="fab fa-facebook"></i>
-      <i class="fab fa-github"></i>
-      <i class="fab fa-telegram"></i>
+      <i class="fab fa-facebook",  style="color: #ff922b;" ></i>
+      <i class="fab fa-github", style="color: #ff922b;"></i>
+      <i class="fab fa-telegram", style="color: #ff922b;"></i>
     </div>
   </footer>
 </html>

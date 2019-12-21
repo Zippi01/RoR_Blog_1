@@ -9,15 +9,15 @@
       <%= f.text_area(:body, {:class => 'form-control'}) %>
     </p>
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <%= f.submit 'Comment', class: 'btn btn-success' %>
+      <%= f.submit 'Comment', class: 'btn btn-warning' %>
     </div>
   <%end%>
 
 <%else%>
 
   <% if current_author == nil || current_author.banned == false %>
-    <p>Please login to post a comment!</p>
+    <strong>Please login to post a comment!</strong>
   <%else%>
-    <p>Your account is banned!</p>
+    <strong>Your account is banned!</strong>
   <% end %>
 <% end %>

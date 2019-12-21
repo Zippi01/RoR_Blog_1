@@ -1,10 +1,10 @@
-<div class="container, alert alert-secondary">
+<br><br><br>
+<div class="container alert alert-warning text-dark ">
   <h1 align="center">Show</h1>
   <div class="list-group-item px-20" style = "border-radius: 10px">
-    <p>
-      <strong>Author:</strong>
-      <%= full_name(@post) %>
-    </p>
+
+    <p class="fas fa-user"> <%= full_name(@post) %></p>
+
     <p>
       <strong>Title:</strong>
       <%= @post.title %>
@@ -13,22 +13,21 @@
       <strong>Content:</strong>
       <%= @post.content %>
     </p>
-    <p>
-      <strong>Image:</strong><br>
-      <%= image_tag @post.image, width: '50%' %>
-    </p>
-    <p>
-      <%= distance_of_time_in_words(Time.now.hour, Time.now-@post.created_at) %>
-    </p>
+
+
+      <p><%= image_tag @post.image, width: '50%', style: "border-radius: 10px" %></p>
+
+
+      <p class="fas fa-calendar-alt"></p> <%= @post.created_at%>
 
     <div class="pjax-container">
       <div class="btn-group btn-group-toggle" data-toggle="buttons">
         <% if current_author &&
               current_author.id == @post.author_id &&
               current_author.banned == false%>
-          <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-secondary' %>
+          <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-outline-secondary' %>
         <%end%>
-          <%= link_to 'Back', posts_path, class: 'btn btn-dark' %>
+          <%= link_to 'Back', posts_path, class: 'btn btn-outline-dark' %>
       </div>
     </div>
 
