@@ -1,6 +1,7 @@
 <br><br><br>
 <div class="container alert alert-warning text-dark ">
   <h1 align="center">Show</h1>
+
   <div class="list-group-item px-20" style = "border-radius: 10px">
 
     <p class="fas fa-user"> <%= full_name(@post) %></p>
@@ -36,10 +37,12 @@
     <br>
 
     <h5>Comments</h5>
-    <div class = "comment">
-      <%= nested_comments @post.comments.arrange(order: :created_at)%>
-    </div>
-    <%= render 'comments/form' %>
+    <% if current_author == nil || current_author.banned == false %>
+      <div class = "new_comment" id = "new_comment">
+        <%= nested_comments @post.comments.arrange(order: :created_at)%>
+      </div>
+      <%= render 'comments/form' %>
+    <% end %>
   </div>
 </div>
 

@@ -1,3 +1,2 @@
-$(".comment").replaceWith("<div class='comment'><%= j nested_comments @post.comments.arrange(order: :created_at)%>");
-
-$('.new_comment')[0].reset();
+$(".new_comment").replaceWith("<div class='new_comment'><%= j nested_comments @post.comments.arrange(order: :created_at)%>");
+$(".reply_comment_form, .no_comments_message").remove();

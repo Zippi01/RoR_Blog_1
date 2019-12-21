@@ -1,23 +1,18 @@
+<div class="container new_comment_form">
+  <div class="coments" id="form_new">
+    <div id="form_comment">
+      <p>Add a public comment</p>
+      <% if current_author && current_author.banned == false %>
+        <%= form_with(model: [@post, @post.comments.build])  do |f|%>
 
-
-<p>Add a public comment</p>
-
-<% if current_author && current_author.banned == false %>
-  <%= form_for ([@post, @post.comments.build]), remote:true  do |f|%>
-
-    <p><strong>Text comment:</strong>
-      <%= f.text_area(:body, {:class => 'form-control'}) %>
-    </p>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-      <%= f.submit 'Comment', class: 'btn btn-warning' %>
+          <p><strong>Text comment:</strong>
+            <%= f.text_area(:body, {:class => 'form-control'}) %>
+          </p>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <%= f.submit 'Comment', class: 'btn btn-warning' %>
+          </div>
+        <%end%>
+      <% end %>
     </div>
-  <%end%>
-
-<%else%>
-
-  <% if current_author == nil || current_author.banned == false %>
-    <strong>Please login to post a comment!</strong>
-  <%else%>
-    <strong>Your account is banned!</strong>
-  <% end %>
-<% end %>
+  </div>
+</div>

@@ -1,5 +1,4 @@
-
-<div id="comment_<%= comment.id %>">
+<div class="coments comment-<%= comment.id %>" id = "comment-<%= comment.id %>" >
   <div class="alert alert-light">
     <div title = "<%= comment.created_at%>"><strong><%= Author.find_by_id(comment.author_id).first_name %></strong>: <%= comment.body %>
       <br>
@@ -24,7 +23,8 @@
 
           <%= link_to 'Edit',
           edit_post_comment_path(@post, comment),
-          class: 'badge badge-pill badge-light' %>
+          remote: true,
+          class: 'badge badge-pill badge-light'%>
 
           <%= link_to 'Destroy',
           [comment.post, comment],
@@ -44,14 +44,16 @@
            <%= link_to ' ',
                post_comment_like_path(@post, comment, like_check ),
                method: :delete,
-               class: "badge badge-light far fa-thumbs-down", remote: true %>
+               class: "badge badge-light far fa-thumbs-down",
+               remote: true %>
 
          <% else %>
 
            <%= link_to ' ',
                post_comment_likes_path(@post, comment),
                method: :post,
-               class: "badge badge-light far fa-thumbs-up" , remote: true %>
+               class: "badge badge-light far fa-thumbs-up",
+               remote: true %>
 
          <% end %>
        <% end %>

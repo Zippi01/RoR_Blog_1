@@ -2,6 +2,7 @@
 <div class="container alert alert-warning text-dark">
     <head>
       <h1 align="center">Posts</h1>
+      <%= render partial: 'posts/flash',  flash: flash %>
     </head>
     <body>
       <% @posts.each do |post| %>
@@ -10,12 +11,13 @@
           <p class="fas fa-user"> <%= full_name(post) %></p>
 
           <h5><%= post.title %></h5>
+          <hr>
           <h5>Content</h5>
             <p><%= post.content %></p>
 
           <div class="pjax-container">
             <i class="far fa-eye"> <%= post.impressions_count %></i>
-            <i class="far fa-eye"><%= post.comments.count %></i><br>
+            <i class="far fa-comment-dots"> <%= post.comments.count %></i><br>
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
               <%= link_to 'Show', post , class: 'btn btn-warning'%>
 
@@ -31,7 +33,8 @@
                     post,
                     method: :delete,
                     data: { confirm: 'Are you sure?' },
-                    class: 'btn btn-outline-dark'%>
+                    class: 'btn btn-outline-dark',
+                    remote: true%>
               <% end %>
             </div>
           </div>

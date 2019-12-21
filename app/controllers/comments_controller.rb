@@ -29,20 +29,18 @@ class CommentsController < ApplicationController
   end
 
   def edit
-      @post = Post.find(params[:post_id])
-      @comment = Comment.find(params[:id])
-    end
+    @comment = @post.comments.find(params[:id])
+  end
 
    def update
-     @post = Post.find(params[:post_id])
-     @comment = Comment.find(params[:id])
-     respond_to do |format|
-       if @comment.update(comment_params)
-         format.html { redirect_to @post, notice: 'Comment was successfully updated.' }
-         format.json { render :show, status: :ok, location: @post }
-       else
-         format.html { render :edit }
-         format.json { render json: @post.errors, status: :unprocessable_entity }
+     @comment = @post.comments.find(params[:id])
+     if @comment.ancestors.count <=5
+       respond_to do |format|
+         if @comment.update(comment_params)
+           format.js
+         else
+           format.html { render :edit }
+         end
        end
      end
     end
@@ -54,7 +52,7 @@ class CommentsController < ApplicationController
           @comment.destroy
           respond_to do |format|
             format.js {render 'destroy', status: :created, location: @post}
-            format.html { redirect_to @post, notice: 'Comment was successfully destroyed.' }
+            format.html { redirect_to @post, alert: 'Comment was successfully destroyed.' }
           end
         else
           redirect_to root_path

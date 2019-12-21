@@ -6,16 +6,16 @@
   <head>
     <title>Blog</title>
 
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/ac7c51298a.js" crossorigin="anonymous"></script>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div>
         <i class="fas fa-coffee" style="color: #ff922b;"></i>
         <%= link_to "Blog", home_path, class: "navbar-brand "%>
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
       </div>
 
       <!-- <button class="navbar-toggler" type="button"
@@ -63,6 +63,7 @@
   <body>
       <%= render partial: 'posts/flash',  flash: flash %>
       <%= yield %>
+
   </body>
   <footer class=" page-footer font-small bg-light">
     <div class="footer-copyright text-center py-3 ">© 2019 RoR Homework:
