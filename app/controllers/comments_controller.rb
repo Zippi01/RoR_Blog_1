@@ -46,18 +46,17 @@ class CommentsController < ApplicationController
     end
 
     def destroy
-        @post = Post.find(params[:post_id])
-        @comment = @post.comments.find(params[:id])
-        if (current_author.id == @comment.author_id)
-          @comment.destroy
-          respond_to do |format|
+      @comment = @post.comments.find(params[:id])
+      if (current_author.id == @comment.author_id)
+        respond_to do |format|
+          if @comment.destroy
             format.js {render 'destroy', status: :created, location: @post}
+          else
             format.html { redirect_to @post, alert: 'Comment was successfully destroyed.' }
           end
-        else
-          redirect_to root_path
         end
       end
+    end
 
   private
 
