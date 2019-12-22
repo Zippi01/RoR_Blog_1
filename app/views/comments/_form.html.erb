@@ -11,7 +11,12 @@
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <%= f.submit 'Comment', class: 'btn btn-warning' %>
           </div>
-        <%end%>
+        <% end %>
+
+        <% elsif current_author && current_author.banned == true %>
+          <p>Your banned!</p>
+        <% else %>
+          <p>Please login to post a comment!</p>
       <% end %>
     </div>
   </div>

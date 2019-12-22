@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def cookie_index
-    cookies[:"actions"] == 5
+    # true if cookies[:actions] % 5 == 0
   end
 
   def nested_comments(comments)

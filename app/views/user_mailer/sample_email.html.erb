@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi <%= @author.first_name %></h1>
+    <h1>Hey <%= @author.first_name %>!</h1>
     <p>
-      Sample mail sent using smtp.
+      To complete your Blog sign up, we just need to verify your email address:
     </p>
     <%= confirm_email_author_url(@author.confirm_token) %>
   </body>
