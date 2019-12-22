@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(version: 2019_12_14_144327) do
     t.bigint "author_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "likes"
+    t.integer "value"
     t.index ["author_id"], name: "index_likes_on_author_id"
     t.index ["comment_id"], name: "index_likes_on_comment_id"
   end
