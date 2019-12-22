@@ -3,21 +3,21 @@
   <div class="card">
     <h2 class="card-title text-center mb-4 mt-1">Password Recovery</h2>
     <%= form_tag pass_reset_index_path, :method => :post do %>
-      <div class="form-group">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-at"></i> </span>
+      <div class = "form-group">
+        <div class = "input-group">
+          <div class = "input-group-prepend">
+            <span class = "input-group-text"> <i class = "fa fa-at"></i> </span>
           </div>
           <%= text_field_tag :email,
-              params[:email],
-              class:'form-control',
-              id: "email",
-              placeholder: "Email" %>
+                              params[:email],
+                              class:'form-control',
+                              id: "email",
+                              placeholder: "Email" %>
         </div>
       </div>
 
-      <div class="form-group">
-        <div class="text-center form-group form"><%= submit_tag "Reset Password", class:"btn btn-warning btn-block" %></div>
+      <div class = "form-group">
+        <div class = "text-center form-group form"><%= submit_tag "Reset Password", class:"btn btn-warning btn-block" %></div>
       </div>
     <% end %>
   </div>

@@ -1,20 +1,20 @@
-<div class="coments comment-<%= comment.id %>" id = "comment-<%= comment.id %>" >
-  <div class="alert alert-light">
+<div class = "coments comment-<%= comment.id %>" id = "comment-<%= comment.id %>" >
+  <div class = "alert alert-light">
     <div title = "<%= comment.created_at%>"><strong><%= Author.find_by_id(comment.author_id).first_name %></strong>: <%= comment.body %>
       <br>
       <%= distance_of_time_in_words(Time.now.hour, Time.now-comment.created_at) %>
 
       <% if comment.created_at != comment.updated_at%>
-        <i class="far fa-edit"></i>
+        <i class = "far fa-edit"></i>
       <% end %>
 
       <br>
 
       <% if current_author && !current_author.banned?%>
         <%= link_to 'Reply',
-            new_post_comment_path(comment.post, parent_id: comment.id, js: true),
-            remote: true,
-            class:'badge badge-pill badge-warning' %>
+                    new_post_comment_path(comment.post, parent_id: comment.id, js: true),
+                    remote: true,
+                    class:'badge badge-pill badge-warning' %>
       <% end %>
 
       <% if current_author &&
@@ -22,19 +22,19 @@
             Time.now - comment.created_at < 1.hour%>
 
           <%= link_to 'Edit',
-          edit_post_comment_path(@post, comment),
-          remote: true,
-          class: 'badge badge-pill badge-light'%>
+                      edit_post_comment_path(@post, comment),
+                      remote: true,
+                      class: 'badge badge-pill badge-light'%>
 
           <%= link_to 'Destroy',
-          [comment.post, comment],
-          remote: true,
-          method: :delete, data: { confirm: 'Are you sure?' },
-          class: 'badge badge-pill badge-light' %>
+                      [comment.post, comment],
+                      remote: true,
+                      method: :delete, data: { confirm: 'Are you sure?' },
+                      class: 'badge badge-pill badge-light' %>
         <% end %>
 
       <p></p>
-      <i><%= comment.likes.map(&:value).sum %> <%= (comment.likes.map(&:value).sum) == 1 ? 'Like' : 'Likes'%></i>
+      <i><%= comment.likes.map(&:value).sum %> <%= (comment.likes.map(&:value).sum) == 1 ? 'Like' : 'Likes' %></i>
 
       <% if current_author%>
         <% like_check = comment.likes.find { |like| like.author_id == current_author.id} %>
@@ -42,23 +42,19 @@
 
          <% if current_author && like_check.nil? && current_author.banned == false %>
             <%= link_to ' ',
-               post_comment_likes_path(@post, comment),
-               remote: true,
-               method: :post,
-               class: "badge badge-light far fa-thumbs-up"%>
+                         post_comment_likes_path(@post, comment),
+                         remote: true,
+                         method: :post,
+                         class: "badge badge-light far fa-thumbs-up"%>
            <%= link_to ' ',
-               post_comment_destroy_path(@post, comment),
-               remote: true,
-               method: :post,
-               class: "badge badge-light far fa-thumbs-down"%>
+                         post_comment_destroy_path(@post, comment),
+                         remote: true,
+                         method: :post,
+                         class: "badge badge-light far fa-thumbs-down"%>
         <% else %>
-            <span class="badge badge-light"><i class="far fa-thumbs-up"></i></span>
-            <span class="badge badge-light "><i class="far fa-thumbs-down"></i></span>
+            <span class = "badge badge-light"><i class = "far fa-thumbs-up"></i></span>
+            <span class = "badge badge-light "><i class = "far fa-thumbs-down"></i></span>
         <% end %>
-
-
-
-
     </div>
   </div>
 </div>

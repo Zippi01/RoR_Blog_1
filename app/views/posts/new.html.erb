@@ -1,11 +1,11 @@
 <br><br><br>
-<div class="container alert alert-warning text-dark">
-  <h1 align="center">New Post</h1>
+<div class = "container alert alert-warning text-dark">
+  <h1 align = "center">New Post</h1>
   <%= render partial: 'posts/flash',  flash: flash %>
-  <div class="list-group-item px-20" style = "border-radius: 10px" >
+  <div class = "list-group-item px-20" style = "border-radius: 10px" >
     <%= render 'form', post: @post %>
-    <div class="pjax-container">
-      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <div class = "pjax-container">
+      <div class = "btn-group btn-group-toggle" data-toggle = "buttons">
         <%= link_to 'Back', posts_path, class: 'btn btn-outline-secondary'%>
       </div>
     </div>

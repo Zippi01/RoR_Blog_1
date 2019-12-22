@@ -1,3 +1,3 @@
 $(".reply-form").hide(500)
-$(".comment-<%=@comment.parent_id %>").after('<div class="reply-form"<%= j render('replies', comment: @comment) %></div>');
+$(".comment-<%=@comment.parent_id %>").after('<div class = "reply-form"<%= j render('replies', comment: @comment) %></div>');
 $(".form-edit").hide(500)

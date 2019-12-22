@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-     @posts = Post.all.order('created_at DESC')
+    @posts = Post.all.order('created_at DESC')
     if params[:search]
       @posts = Post.search(params[:search]).order('updated_at').paginate(page: params[:page], per_page: 5)
     else
@@ -35,8 +35,8 @@ class PostsController < ApplicationController
     @post = current_author.posts.build(post_params)
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.'}
-        format.json { render :show, status: :created, location: @post}
+        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -69,6 +69,7 @@ class PostsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])

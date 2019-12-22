@@ -1,6 +1,6 @@
 <%= form_with(model: post, local: true) do |form| %>
   <% if post.errors.any? %>
-    <div id="error_explanation">
+    <div id = "error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
       <ul>
         <% post.errors.full_messages.each do |message| %>
@@ -10,21 +10,21 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class = "field">
     <strong><%= form.label :"Title:"%></strong>
     <%= form.text_field :title, class: "form-control"%>
   </div>
     <p></p>
 
-  <div class="field">
+  <div class = "field">
     <strong><%= form.label :"Content:" %></strong>
     <%= form.text_area :content, class: "form-control"%>
   </div>
   <p></p>
 
-  <div class="field">
+  <div class = "field">
     <strong><%= form.label :"Image:"%></strong>
-    <p><i class="fas fa-images"></i><%= form.file_field :image,class: "btn-sm" %></p>
+    <p><i class = "fas fa-images"></i><%= form.file_field :image,class: "btn-sm" %></p>
   </div>
     <p></p>
 

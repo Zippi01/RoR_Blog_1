@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     if @comment.ancestors.count <= 4
       respond_to do |format|
         if @comment.save
-          format.js {render 'create', status: :created, location: @post}
+          format.js { render 'create', status: :created, location: @post }
           format.html { redirect_to @post, notice: 'Comment was successfully created.' }
         end
       end
@@ -32,36 +32,36 @@ class CommentsController < ApplicationController
     @comment = @post.comments.find(params[:id])
   end
 
-   def update
-     @comment = @post.comments.find(params[:id])
-     if @comment.ancestors.count <=5
-       respond_to do |format|
-         if @comment.update(comment_params)
-           format.js
-         else
-           format.html { render :edit }
-         end
-       end
-     end
-    end
-
-    def destroy
-      @comment = @post.comments.find(params[:id])
-      if (current_author.id == @comment.author_id)
-        respond_to do |format|
-          if @comment.destroy
-            format.js {render 'destroy', status: :created, location: @post}
-          else
-            format.html { redirect_to @post, alert: 'Comment was successfully destroyed.' }
-          end
+  def update
+    @comment = @post.comments.find(params[:id])
+    if @comment.ancestors.count <= 5
+      respond_to do |format|
+        if @comment.update(comment_params)
+          format.js
+        else
+          format.html { render :edit }
         end
       end
     end
+  end
+
+  def destroy
+    @comment = @post.comments.find(params[:id])
+    if (current_author.id == @comment.author_id)
+      respond_to do |format|
+        if @comment.destroy
+          format.js { render 'destroy', status: :created, location: @post }
+        else
+          format.html { redirect_to @post, alert: 'Comment was successfully destroyed.' }
+        end
+      end
+    end
+  end
 
   private
 
   def comment_params
-     params.require(:comment).permit(:body, :author_id, :parent_id)
+    params.require(:comment).permit(:body, :author_id, :parent_id)
   end
 
   def find_post

@@ -5,19 +5,16 @@ class Author < ApplicationRecord
   before_create :confirmation_token
   after_create :send_confirmation
 
-
   has_secure_password
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
-  # validate :email_valid
-  # validates :password, presence: true, length: { minimum: 8 }
   validates :password, presence: true, allow_nil: true
   validate :password_valid
 
   def email_activate
-     self.email_confirmed = true
-     self.confirm_token = nil
-     save!(:validate => false)
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!(:validate => false)
   end
 
   def password_reset
@@ -30,7 +27,7 @@ class Author < ApplicationRecord
   private
 
   def send_confirmation
-      UserMailer.sample_email(self).deliver!
+    UserMailer.sample_email(self).deliver!
   end
 
   def confirmation_token

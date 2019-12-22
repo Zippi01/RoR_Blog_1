@@ -6,11 +6,11 @@
   <head>
     <title>Blog</title>
 
-    <script src="https://kit.fontawesome.com/ac7c51298a.js" crossorigin="anonymous"></script>
+    <script src = "https://kit.fontawesome.com/ac7c51298a.js" crossorigin = "anonymous"></script>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class = "navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div>
-        <i class="fas fa-coffee" style="color: #ff922b;"></i>
+        <i class = "fas fa-coffee" style="color: #ff922b;"></i>
         <%= link_to "Blog", home_path, class: "navbar-brand "%>
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
@@ -18,32 +18,25 @@
         <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
       </div>
 
-      <!-- <button class="navbar-toggler" type="button"
-              data-toggle="collapse" data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false"
-              aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
-
       <%= form_tag(posts_path, :method => "get",
-          id: "search-form",
-          class:"form-inline center col-xs-4 col-sm-4 col-md-4") do %>
+                                id: "search-form",
+                                class:"form-inline center col-xs-4 col-sm-4 col-md-4") do %>
 
         <%= text_field_tag :search,
-            params[:search],
-            placeholder: "Search Posts",
-            class: "form-control mr-sm-2" %>
+                            params[:search],
+                            placeholder: "Search Posts",
+                            class: "form-control mr-sm-2" %>
 
         <%= submit_tag "Search", class: "btn btn-outline-warning" %>
       <% end %>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active"></li>
+      <div class = "collapse navbar-collapse" id = "navbarSupportedContent">
+        <ul class = "navbar-nav mr-auto">
+          <li class = "nav-item active"></li>
         </ul>
-        <form class="form-inline my-2 my-lg-0  ">
-          <div class="nav-item">
+        <form class = "form-inline my-2 my-lg-0  ">
+          <div class = "nav-item">
             <% if current_author %>
-            <div class="badge badge-light">
+            <div class = "badge badge-light">
                 Logged in as <%= current_author.email %>
               </div>
                 <%= link_to "Logout", "/logout", class:'btn btn-outline-warning my-2 my-sm-0'  %>
@@ -61,16 +54,16 @@
   </head>
 
   <body>
-      <%= render partial: 'posts/flash',  flash: flash %>
-      <%= yield %>
-
+    <%= render partial: 'posts/flash',  flash: flash %>
+    <%= yield %>
   </body>
-  <footer class=" page-footer font-small bg-light">
-    <div class="footer-copyright text-center py-3 ">© 2019 RoR Homework:
+
+  <footer class = " page-footer font-small bg-light">
+    <div class = "footer-copyright text-center py-3 ">© 2019 RoR Homework:
       <strong>RoR_Blog</strong><br>
-      <i class="fab fa-facebook",  style="color: #ff922b;" ></i>
-      <i class="fab fa-github", style="color: #ff922b;"></i>
-      <i class="fab fa-telegram", style="color: #ff922b;"></i>
+      <i class = "fab fa-facebook",  style = "color: #ff922b;" ></i>
+      <i class = "fab fa-github", style = "color: #ff922b;"></i>
+      <i class = "fab fa-telegram", style = "color: #ff922b;"></i>
     </div>
   </footer>
 </html>

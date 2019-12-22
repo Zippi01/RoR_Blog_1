@@ -1,7 +1,7 @@
 <br>
-<div class="container reply_comment_form" id="reply_comment_form">
-  <div class="list-group-item px-20" style = "border-radius: 10px">
-    <div class="field">
+<div class = "container reply_comment_form" id = "reply_comment_form">
+  <div class = "list-group-item px-20" style = "border-radius: 10px">
+    <div class = "field">
       <%= form_with(model: [ @post, @post.comments.build ]) do |f| %>
         <%= f.hidden_field :parent_id, value: params[:parent_id] %>
           <strong><%= f.label :"Content:" %></strong>
@@ -9,7 +9,7 @@
 
           <p></p>
 
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <div class = "btn-group btn-group-toggle" data-toggle = "buttons">
             <%= f.submit 'Save', class:"btn btn-warning"%>
           </div>
       <% end %>

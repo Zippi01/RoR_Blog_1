@@ -1,6 +1,6 @@
-<div class="container new_comment_form">
-  <div class="coments" id="form_new">
-    <div id="form_comment">
+<div class = "container new_comment_form">
+  <div class = "coments" id="form_new">
+    <div id =" form_comment">
       <p>Add a public comment</p>
       <% if current_author && current_author.banned == false %>
         <%= form_with(model: [@post, @post.comments.build])  do |f|%>
@@ -8,7 +8,7 @@
           <p><strong>Text comment:</strong>
             <%= f.text_area(:body, {:class => 'form-control'}) %>
           </p>
-          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <div class = "btn-group btn-group-toggle" data-toggle = "buttons">
             <%= f.submit 'Comment', class: 'btn btn-warning' %>
           </div>
         <% end %>

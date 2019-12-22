@@ -1,41 +1,39 @@
 <br><br><br><br>
-<div class=" container w-50 p-3 ">
-  <div class="card">
-    <h2 class="card-title text-center mb-4 mt-1">Log in</h2>
+<div class = " container w-50 p-3 ">
+  <div class = "card">
+    <h2 class = "card-title text-center mb-4 mt-1">Log in</h2>
     
     <%= render partial: 'posts/flash',  flash: flash %>
 
     <%= form_for(:session, url: sessions_path) do |f| %>
-      <div class="form-group">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-at"></i> </span>
+      <div class = "form-group">
+        <div class = "input-group">
+          <div class = "input-group-prepend">
+            <span class = "input-group-text"> <i class = "fa fa-at"></i> </span>
           </div>
             <%= f.text_field :email,
-                class: "form-control",
-                placeholder: "Email" %>
+                              class: "form-control",
+                              placeholder: "Email" %>
         </div>
       </div>
 
-      <div class="form-group">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+      <div class = "form-group">
+        <div class = "input-group">
+          <div class = "input-group-prepend">
+            <span class = "input-group-text"> <i class = "fa fa-lock"></i> </span>
           </div>
           <%= f.password_field :password,
-              class: "form-control",
-              placeholder: "Password" %>
+                                class: "form-control",
+                                placeholder: "Password" %>
         </div>
         <p class = "card-title text-center mb-4 mt-1"><em >(8 characters minimum)</em></p>
       </div>
 
-      <div class="form-group">
+      <div class = "form-group">
         <%= f.submit 'Login', class: "btn btn-warning btn-block" %>
       </div>
-      <p class="text-center"><%= link_to "Forgot password?", new_pass_reset_path, class:"badge badge-light"%></p>
+      <p class = "text-center"><%= link_to "Forgot password?", new_pass_reset_path, class:"badge badge-light"%></p>
     <% end %>
-
   </div>
-
 </div>
 <br>
